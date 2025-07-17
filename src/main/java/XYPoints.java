@@ -32,12 +32,12 @@ public class XYPoints {
         return result;
     }
 
-    public Point geometricMiddle() {
-        double midX = (getMaxX() + getMinX()) / 2;
-        double midY = (getMaxY() + getMinY()) / 2;
-        offset = new Point(midX, midY, "midPoint");
-        return offset;
-    }
+//    public Point geometricMiddle() {
+//        double midX = (getMaxX() + getMinX()) / 2;
+//        double midY = (getMaxY() + getMinY()) / 2;
+//        offset = new Point(midX, midY, "midPoint");
+//        return offset;
+//    }
 
     public Point getAverageCenter() {
         Double xTotal = 0.0;

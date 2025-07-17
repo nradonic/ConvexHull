@@ -56,7 +56,7 @@ public class FindPerimeterPoints {
         // from middlePoint project out to every other point
         // discard points if some other point is farther out than that point itself, in that direction
 
-        XYPoints resultBlock = new XYPoints();
+//        XYPoints resultBlock = new XYPoints();
 
         PointPairs perimeterPointPairs = new PointPairs();
         PointPairs insidePoints = new PointPairs();

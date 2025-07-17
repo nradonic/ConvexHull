@@ -7,14 +7,18 @@ import static java.lang.Math.floor;
 public class DisplayFrame extends JFrame {
     MyPanel myPanel = new MyPanel();
     Dimension baseDimension = new Dimension(1000, 1000);
+    SizeSelectorPanel sizeSelectorPanel = new SizeSelectorPanel();
 
-    int baseX = baseDimension.width / 2;
-    int baseY = baseDimension.height / 2;
-    int scale = 100;
+//    int baseX = baseDimension.width / 2;
+//    int baseY = baseDimension.height / 2;
+//    int scale = 100;
 
     public DisplayFrame() {
-        this.add(myPanel);
+        this.setLayout(new BorderLayout());
+        this.add(myPanel, BorderLayout.NORTH);
+        this.add(sizeSelectorPanel, BorderLayout.SOUTH);
         myPanel.setPreferredSize(baseDimension);
+        this.add(sizeSelectorPanel);
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(true);
@@ -47,7 +51,7 @@ class MyPanel extends JPanel {
 
     XYPoints xyPoints = new XYPoints();
     PointPairs perimeterPoints = new PointPairs();
-    XYPointScaling xyPointScaling = new XYPointScaling();
+//    XYPointScaling xyPointScaling = new XYPointScaling();
 
     Point midPoint;
 

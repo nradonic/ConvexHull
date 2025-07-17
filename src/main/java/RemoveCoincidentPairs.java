@@ -81,14 +81,14 @@ public class RemoveCoincidentPairs {
         return results;
     }
 
-    private static String makeSignature(TreeSet<Point> points) {
-        String result = "";
-        for (Point p : points
-        ) {
-            result += p.getLabel();
-        }
-        return result;
-    }
+//    private static String makeSignature(TreeSet<Point> points) {
+//        String result = "";
+//        for (Point p : points
+//        ) {
+//            result += p.getLabel();
+//        }
+//        return result;
+//    }
 
 
 }

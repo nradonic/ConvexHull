@@ -1,20 +1,38 @@
 import java.util.logging.Logger;
 
 public class ConvexHull {
-    private static Logger logger = Logger.getLogger(ConvexHull.class.getName());
+    private static final Logger logger = Logger.getLogger(ConvexHull.class.getName());
     public final static int maxRadius = 400;
     public final static int minRadius = 50;
+    private static int kount = 100;
+    private static DisplayFrame displayFrame = new DisplayFrame();
 
     public static void main(String[] args) {
+        CreateDrawEncirclePoints(kount);
+        while (true) {
+            if (!displayFrame.sizeSelectorPanel.checkPushedGoButton()) {
+                try {
+                    Thread.sleep(1000); // Sleep for 1 second
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    System.out.println("Thread was interrupted");
+                    break;
+                }
+            } else {
+                kount = displayFrame.sizeSelectorPanel.getSelectedSize();
+                CreateDrawEncirclePoints(kount);
+            }
+        }
+    }
 
-        ConvexHull convexHull = new ConvexHull();
-        XYPoints xyPoints = MakeInitialPoints.makeInitialPoints(800);
+    private static void CreateDrawEncirclePoints(int kount) {
+        XYPoints xyPoints = MakeInitialPoints.makeInitialPoints(kount);
         System.out.println("Points:\n" + xyPoints.toString());
 
         Point midPoint = xyPoints.getAverageCenter();
         System.out.println("Midpoint: " + midPoint.toString());
 
-        DisplayFrame displayFrame = new DisplayFrame();
+
         displayFrame.drawPoints(xyPoints);
         displayFrame.addMidPoint(midPoint);
 

@@ -27,32 +27,32 @@ public class Point extends Point2D implements  Comparable<Point>{
 
     }
 
-    public void addPoint(Point point) {
-        x += point.getX();
-        y += point.getY();
-    }
+//    public void addPoint(Point point) {
+//        x += point.getX();
+//        y += point.getY();
+//    }
 
     public String toString() {
         return label + "  X: " + x + " ,  Y: " + y;
     }
 
-    public void scalePoint(double scale) {
-        if (scale != 0) {
-            x *= scale;
-            y *= scale;
-        }
-    }
+//    public void scalePoint(double scale) {
+//        if (scale != 0) {
+//            x *= scale;
+//            y *= scale;
+//        }
+//    }
 
     public Point clone() {
         Point point = new Point(x, y, "clone_" + label);
         return point;
     }
 
-    public Point normalize(Point offset, double scale) {
-        Point point = new Point(x - offset.getX(), y - offset.getY(), "normalize_" + label);
-        point.scalePoint(scale);
-        return point;
-    }
+//    public Point normalize(Point offset, double scale) {
+//        Point point = new Point(x - offset.getX(), y - offset.getY(), "normalize_" + label);
+//        point.scalePoint(scale);
+//        return point;
+//    }
 
     public int getIntX() {
         return (int) Math.round(x);
