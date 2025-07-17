@@ -25,6 +25,10 @@ public class SizeSelectorPanel extends JPanel {
         } else return false;
     }
 
+    public boolean toggleSelected() {
+        return toggleButton.isSelected();
+    }
+
     public static boolean checkInvertedToggleButton() {
         return toggleButton.isSelected();
     }

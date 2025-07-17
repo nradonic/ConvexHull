@@ -4,6 +4,7 @@ public class ConvexHull {
     public final static int minRadius = 50;
     private static int kount = 100;
     private static DisplayFrame displayFrame = new DisplayFrame();
+    private static XYPoints xyPoints = MakeInitialPoints.makeInitialPoints(kount);
 
     public static void main(String[] args) {
         CreateDrawEncirclePoints(kount);
@@ -13,6 +14,7 @@ public class ConvexHull {
             if (!goState && !toggleState) {
                 try {
                     Thread.sleep(1000); // Sleep for 1 second
+                    continue;
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     System.out.println("Thread was interrupted");
@@ -23,17 +25,24 @@ public class ConvexHull {
                 kount = displayFrame.sizeSelectorPanel.getSelectedSize();
                 CreateDrawEncirclePoints(kount);
             }
+            if (displayFrame.sizeSelectorPanel.toggleSelected()) {
+                redrawDisplay(InvertPoints.invertPoints(xyPoints));
+            } else {
+                redrawDisplay(xyPoints);
+            }
         }
     }
 
     private static void CreateDrawEncirclePoints(int kount) {
-        XYPoints xyPoints = MakeInitialPoints.makeInitialPoints(kount);
+        xyPoints = MakeInitialPoints.makeInitialPoints(kount);
         //System.out.println("Points:\n" + xyPoints.toString());
 
+        redrawDisplay(xyPoints);
+    }
+
+    private static void redrawDisplay(XYPoints xyPoints) {
         Point midPoint = xyPoints.getAverageCenter();
         System.out.println("Midpoint: " + midPoint.toString());
-
-
         displayFrame.drawPoints(xyPoints);
         displayFrame.addMidPoint(midPoint);
 
