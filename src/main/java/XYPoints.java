@@ -4,11 +4,6 @@ import java.util.Iterator;
 
 public class XYPoints {
     private ArrayList<Point> points = new ArrayList<Point>();
-    private Rectangle rectangle = null;
-
-    private double pointRange = 0;
-    private double scale = 1.0;
-    private Point offset = new Point(0.0, 0.0, "");
 
     public void addPoint(Double x, Double y) {
         points.add(new Point(x, y, "P" + Integer.toString(points.size())));
@@ -31,13 +26,6 @@ public class XYPoints {
         result += "]\n";
         return result;
     }
-
-//    public Point geometricMiddle() {
-//        double midX = (getMaxX() + getMinX()) / 2;
-//        double midY = (getMaxY() + getMinY()) / 2;
-//        offset = new Point(midX, midY, "midPoint");
-//        return offset;
-//    }
 
     public Point getAverageCenter() {
         Double xTotal = 0.0;
@@ -86,4 +74,14 @@ public class XYPoints {
         }
         return max;
     }
+
+    public XYPoints copy() {
+        XYPoints copy = new XYPoints();
+        for (Point point : points) {
+            copy.addPoint(point);
+        }
+        return copy;
+    }
+
+
 }

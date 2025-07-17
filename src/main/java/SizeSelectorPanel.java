@@ -7,14 +7,26 @@ import java.awt.event.ActionListener;
 public class SizeSelectorPanel extends JPanel {
     private JSpinner sizeSpinner;
     private JButton goButton;
-    private boolean goState = false;
+    private static JToggleButton toggleButton;
+    private boolean goState, toggleState = false;
 
-    public boolean checkPushedGoButton(){
-        if(goState) {
+    public boolean checkPushedGoButton() {
+        if (goState) {
             goState = false;
             return true;
         }
         return false;
+    }
+
+    public boolean toggleButtonState() {
+        if (toggleState) {
+            toggleState = false;
+            return true;
+        } else return false;
+    }
+
+    public static boolean checkInvertedToggleButton() {
+        return toggleButton.isSelected();
     }
 
     public SizeSelectorPanel() {
@@ -31,6 +43,8 @@ public class SizeSelectorPanel extends JPanel {
         // Create go button
         goButton = new JButton("Go");
 
+        toggleButton = new JToggleButton("Normal");
+
         // Set preferred size for spinner
         sizeSpinner.setPreferredSize(new Dimension(80, 25));
     }
@@ -41,6 +55,7 @@ public class SizeSelectorPanel extends JPanel {
         add(new JLabel("Size:"));
         add(sizeSpinner);
         add(goButton);
+        add(toggleButton);
     }
 
     private void setupEventHandlers() {
@@ -50,6 +65,14 @@ public class SizeSelectorPanel extends JPanel {
                 int selectedSize = (Integer) sizeSpinner.getValue();
                 onGoButtonClicked(selectedSize);
             }
+        });
+        toggleButton.addItemListener(e -> {
+            if (toggleButton.isSelected()) {
+                toggleButton.setText("Normal");
+            } else {
+                toggleButton.setText("Inverted");
+            }
+            toggleState = true;
         });
     }
 

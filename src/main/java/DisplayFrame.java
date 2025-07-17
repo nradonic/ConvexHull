@@ -9,8 +9,8 @@ public class DisplayFrame extends JFrame {
     Dimension baseDimension = new Dimension(1000, 1000);
     SizeSelectorPanel sizeSelectorPanel = new SizeSelectorPanel();
 
-//    int baseX = baseDimension.width / 2;
-//    int baseY = baseDimension.height / 2;
+    int baseX = baseDimension.width / 2;
+    int baseY = baseDimension.height / 2;
 //    int scale = 100;
 
     public DisplayFrame() {
@@ -48,6 +48,7 @@ public class DisplayFrame extends JFrame {
 class MyPanel extends JPanel {
     private final int radius = 5;
     private final int diameter = 2 * radius;
+
 
     XYPoints xyPoints = new XYPoints();
     PointPairs perimeterPoints = new PointPairs();
@@ -96,6 +97,14 @@ class MyPanel extends JPanel {
 
             g2d.fillOval(x, y, 2 * diameter, 2 * diameter);
         }
+
+        // Crosshairs
+        int baseX = g2d.getClipBounds().width / 2;
+        int baseY = g2d.getClipBounds().height / 2;
+        g2d.setColor(Color.black);
+        g2d.setStroke(new BasicStroke(3));
+        g2d.drawLine(baseX + 10, baseY, baseX - 10, baseY);
+        g2d.drawLine(baseX, baseY + 10, baseX, baseY - 10);
     }
 
     private void drawPointSegments(Graphics2D g2d) {
@@ -116,5 +125,9 @@ class MyPanel extends JPanel {
             g2d.drawOval(pp.secondPoint().getIntX() - 3 * radius, pp.secondPoint().getIntY() - 3 * radius,
                     (3 * diameter), 3 * diameter);
         }
+        this.perimeterPoints.clear();
+        g2d.setColor(Color.black);
+
     }
+
 }

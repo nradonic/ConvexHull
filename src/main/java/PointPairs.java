@@ -37,6 +37,10 @@ public class PointPairs {
         return pointPairs.size();
     }
 
+    public void clear(){
+        pointPairs.clear();
+    }
+
 
     public void addAll(PointPairs pps){
         Iterator<String> ipp = pps.iterator();

@@ -1,5 +1,5 @@
 public class ConvexHull {
-//    private static final Logger logger = Logger.getLogger(ConvexHull.class.getName());
+    //    private static final Logger logger = Logger.getLogger(ConvexHull.class.getName());
     public final static int maxRadius = 400;
     public final static int minRadius = 50;
     private static int kount = 100;
@@ -8,7 +8,9 @@ public class ConvexHull {
     public static void main(String[] args) {
         CreateDrawEncirclePoints(kount);
         while (true) {
-            if (!displayFrame.sizeSelectorPanel.checkPushedGoButton()) {
+            boolean goState = displayFrame.sizeSelectorPanel.checkPushedGoButton();
+            boolean toggleState = displayFrame.sizeSelectorPanel.toggleButtonState();
+            if (!goState && !toggleState) {
                 try {
                     Thread.sleep(1000); // Sleep for 1 second
                 } catch (InterruptedException e) {
@@ -16,7 +18,8 @@ public class ConvexHull {
                     System.out.println("Thread was interrupted");
                     break;
                 }
-            } else {
+            }
+            if (goState) {
                 kount = displayFrame.sizeSelectorPanel.getSelectedSize();
                 CreateDrawEncirclePoints(kount);
             }
@@ -25,7 +28,7 @@ public class ConvexHull {
 
     private static void CreateDrawEncirclePoints(int kount) {
         XYPoints xyPoints = MakeInitialPoints.makeInitialPoints(kount);
-        System.out.println("Points:\n" + xyPoints.toString());
+        //System.out.println("Points:\n" + xyPoints.toString());
 
         Point midPoint = xyPoints.getAverageCenter();
         System.out.println("Midpoint: " + midPoint.toString());
