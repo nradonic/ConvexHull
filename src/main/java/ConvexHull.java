@@ -1,7 +1,5 @@
-import java.util.logging.Logger;
-
 public class ConvexHull {
-    private static final Logger logger = Logger.getLogger(ConvexHull.class.getName());
+//    private static final Logger logger = Logger.getLogger(ConvexHull.class.getName());
     public final static int maxRadius = 400;
     public final static int minRadius = 50;
     private static int kount = 100;
