@@ -18,12 +18,14 @@ public class InvertPoints {
     }
 
     private static Point invertPoint(Point point) {
-        Double dx = point.getX() - 500.0;
-        Double dy = point.getY() - 500.0;
+        Double dx = point.getX();
+        Double dy = point.getY();
 
         Double distance = Math.sqrt(dx * dx + dy * dy);
-        Double scale = (ConvexHull.maxRadius + ConvexHull.minRadius - distance) / distance;
-        Point point1 = new Point(500.0 + dx * scale, 500.0 + dy * scale, point.getLabel() + "-inv");
+        Double primeDisplacement = (ConvexHull.halfRadius * 2 - distance);
+
+        Double scale =(primeDisplacement/distance);
+        Point point1 = new Point( dx * scale,  dy * scale, point.getLabel() + "-inv");
         return point1;
     }
 

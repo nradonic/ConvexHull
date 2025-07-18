@@ -2,6 +2,8 @@ public class ConvexHull {
     //    private static final Logger logger = Logger.getLogger(ConvexHull.class.getName());
     public final static int maxRadius = 400;
     public final static int minRadius = 50;
+    public final static int halfRadius = (maxRadius + minRadius) / 2;
+
     private static int kount = 100;
     private static DisplayFrame displayFrame = new DisplayFrame();
     private static XYPoints xyPoints = MakeInitialPoints.makeInitialPoints(kount);

@@ -12,10 +12,10 @@ public class MakeInitialPoints {
 //                    (double) new Random().nextInt(90) * 10 + 50);
 //        }
         for (int i = 0; i < numberOfPoints; i++) {
-            Double radius = new Random().nextDouble() * ConvexHull.maxRadius + ConvexHull.minRadius;
+            Double radius = new Random().nextDouble() * ( ConvexHull.maxRadius - ConvexHull.minRadius) + ConvexHull.minRadius;
             Double angle = new Random().nextDouble() * 2 * Math.PI;
-            Double x = Math.floor(Math.cos(angle) * radius + halfW);
-            Double y = Math.floor(Math.sin(angle) * radius + halfW);
+            Double x = Math.floor(Math.cos(angle) * radius);
+            Double y = Math.floor(Math.sin(angle) * radius);
             xyPoints.addPoint(x, y);
         }
 

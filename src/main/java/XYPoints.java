@@ -74,14 +74,4 @@ public class XYPoints {
         }
         return max;
     }
-
-    public XYPoints copy() {
-        XYPoints copy = new XYPoints();
-        for (Point point : points) {
-            copy.addPoint(point);
-        }
-        return copy;
-    }
-
-
 }

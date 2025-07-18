@@ -9,9 +9,6 @@ public class DisplayFrame extends JFrame {
     Dimension baseDimension = new Dimension(1000, 1000);
     SizeSelectorPanel sizeSelectorPanel = new SizeSelectorPanel();
 
-    int baseX = baseDimension.width / 2;
-    int baseY = baseDimension.height / 2;
-//    int scale = 100;
 
     public DisplayFrame() {
         this.setLayout(new BorderLayout());
@@ -19,6 +16,7 @@ public class DisplayFrame extends JFrame {
         this.add(sizeSelectorPanel, BorderLayout.SOUTH);
         myPanel.setPreferredSize(baseDimension);
         this.add(sizeSelectorPanel);
+        this.setTitle("Convex Hull - inner and outer convex hulls");
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(true);
@@ -49,7 +47,8 @@ class MyPanel extends JPanel {
     private final int radius = 5;
     private final int diameter = 2 * radius;
 
-
+    int baseX = this.getSize().width / 2;
+    int baseY = this.getSize().height / 2;
     XYPoints xyPoints = new XYPoints();
     PointPairs perimeterPoints = new PointPairs();
 //    XYPointScaling xyPointScaling = new XYPointScaling();
@@ -79,28 +78,31 @@ class MyPanel extends JPanel {
         g2d.setStroke(new BasicStroke(1));
         g2d.setColor(Color.black);
         int diameter = 2 * radius;
+        int baseX = this.getSize().width / 2;
+        int baseY = this.getSize().height / 2;
 
         Iterator<Point> iterator = xyPoints.iterator();
         while (iterator.hasNext()) {
             Point point = iterator.next();
 
-            int x = (int) floor(point.getX()) - radius;
-            int y = (int) floor(point.getY()) - radius;
-
+            int x = (int) floor(point.getX()) - radius + baseX;
+            int y = (int) floor(point.getY()) - radius + baseY;
+//            System.out.println("Base X,Y: " + baseX + "  " + baseY);
             g2d.fillOval(x, y, diameter, diameter);
         }
 
         if (midPoint != null) {
             g2d.setColor(Color.green);
-            int x = (int) floor(midPoint.getX()) - diameter;
-            int y = (int) floor(midPoint.getY()) - diameter;
+            int x = (int) floor(midPoint.getX()) - diameter + baseX;
+            int y = (int) floor(midPoint.getY()) - diameter + baseY;
 
             g2d.fillOval(x, y, 2 * diameter, 2 * diameter);
         }
 
         // Crosshairs
-        int baseX = g2d.getClipBounds().width / 2;
-        int baseY = g2d.getClipBounds().height / 2;
+//        int baseX = g2d.getClipBounds().width / 2;
+//        int baseY = g2d.getClipBounds().height / 2;
+
         g2d.setColor(Color.black);
         g2d.setStroke(new BasicStroke(3));
         g2d.drawLine(baseX + 10, baseY, baseX - 10, baseY);
@@ -109,6 +111,8 @@ class MyPanel extends JPanel {
 
     private void drawPointSegments(Graphics2D g2d) {
         g2d.setStroke(new BasicStroke(2));
+        int baseX = this.getSize().width / 2;
+        int baseY = this.getSize().height / 2;
 
         Iterator<String> ipp = perimeterPoints.iterator();
         while (ipp.hasNext()) {
@@ -116,13 +120,13 @@ class MyPanel extends JPanel {
             PointPair pp = perimeterPoints.get(ipp.next());
             Point p1 = pp.firstPoint();
             Point p2 = pp.secondPoint();
-            g2d.drawLine(p1.getIntX(), p1.getIntY(), p2.getIntX(), p2.getIntY());
+            g2d.drawLine(p1.getIntX() + baseX, p1.getIntY() + baseY, p2.getIntX() + baseX, p2.getIntY() + baseY);
 
             g2d.setColor(Color.blue);
-            g2d.drawOval(pp.firstPoint().getIntX() - diameter, pp.firstPoint().getIntY() - diameter,
+            g2d.drawOval(pp.firstPoint().getIntX() - diameter + baseX, pp.firstPoint().getIntY() - diameter + baseY,
                     (2 * diameter), 2 * diameter);
             g2d.setColor(Color.yellow);
-            g2d.drawOval(pp.secondPoint().getIntX() - 3 * radius, pp.secondPoint().getIntY() - 3 * radius,
+            g2d.drawOval(pp.secondPoint().getIntX() - 3 * radius + baseX, pp.secondPoint().getIntY() - 3 * radius + baseY,
                     (3 * diameter), 3 * diameter);
         }
         this.perimeterPoints.clear();
