@@ -5,3 +5,4 @@ inner polygon.
 Todo: the inner convex hull seems to fail as the inner/outer mapping is not correct, inthat the inner hull is not strictly convex.
 
 
+![Alt text](./ConvexHull.jpg)
